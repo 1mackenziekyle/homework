@@ -59,4 +59,5 @@ I like to use the [TeX.gitignore](https://github.com/github/gitignore/blob/main/
 Hope this was helpful.
 
 _Kyle Mackenzie_
+
 _November 12, 2022_

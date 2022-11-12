@@ -1,4 +1,4 @@
-# My Setup for LaTeX on Windows
+# My Setup for Writing LaTeX Homework Documents on Windows
 
 I write LaTeX for homework assignments, formula sheets, and the rest using a local installation of TeX Live on my laptop, with the _LaTeX Workshop_ extension for VS Code.
 
@@ -18,11 +18,11 @@ Heads-up, it may take a few hours to install and the full installation can take 
 
 ## 2. LaTeX Workshop
 
-Next you should install the *LaTeX Workshop* extension on your VS Code program.
+Next you should install the _LaTeX Workshop_ extension on your VS Code program.
 
 I like to use VS Code for almost everything, because it is at its core a [text editor as opposed to a full-fledged IDE](https://www.reddit.com/r/learnprogramming/comments/8giupf/text_editor_vs_ide/), and can be customized to perform many tasks while staying lightweight.
 
-Once you have VS Code and the *LaTeX Workshop* extension, it is simple as opening your `.tex` file and selecting the command **LaTeX Workshop: Build LaTeX project** from the command pallette (accessible under the *View* panel or through Ctrl+Shift+P) or simply hitting (Ctrl+Shift+B) on a `.tex` file to build a pdf out of your LaTeX code.
+Once you have VS Code and the _LaTeX Workshop_ extension, it is simple as opening your `.tex` file and selecting the command **LaTeX Workshop: Build LaTeX project** from the command pallette (accessible under the _View_ panel or through Ctrl+Shift+P) or simply hitting (Ctrl+Shift+B) on a `.tex` file to build a pdf out of your LaTeX code.
 
 ## 3. Template
 
@@ -30,21 +30,21 @@ Check out the `\template` directory in this repo to see my template for LaTeX.
 
 I copy these files into a new homework folder using the command:
 
-``cp -r C:/homework/template/* .``
+`cp -r C:/homework/template/* .`
 
-Which copies all the files in the first directory using the asterisk *, into the current directory which is represented by the period 
+Which copies all the files in the first directory using the asterisk \*, into the current directory which is represented by the period
 
 **NOTE:** This command uses a Unix-like command line, I execute this in a local installation of Git Bash, since my Windows OS doesn't have Unix commands built into it. Linux and MacOS users should have this command in their default command line.
 
 You can bypass this by simply copy and pasting the template files into your project folder.
 
-Then I just rename the template file to whatever the document represents (ex. `elec221hw5.tex`), and hit Ctrl+Shift+B to build. 
+Then I just rename the template file to whatever the document represents (ex. `elec221hw5.tex`), and hit Ctrl+Shift+B to build.
 
 #### Format of the LaTeX project
 
 The template is made up of two files: the main LaTeX file, `template.tex`, and a custom package `mystyles.sty`.
 
-The `.tex` file is the file which gets turned into the PDF. 
+The `.tex` file is the file which gets turned into the PDF.
 
 The second file is the `.sty` file, which is a file that exports a custom-written LaTeX package using the `\ProvidesPackage{style}` command which is imported into the `.tex` file using the command `\usepackage{style}` which is essentially copied from Tyler Wilson's, the LaTeX God himself, along with some personal changes.
 

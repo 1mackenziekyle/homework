@@ -56,6 +56,8 @@ One quick note on using Git for LaTeX, it is recommended to use a `.gitignore` f
 
 I like to use the [TeX.gitignore](https://github.com/github/gitignore/blob/main/TeX.gitignore) from GitHub's [github/gitignore](https://github.com/github/gitignore) repository.
 
+Huge shoutout to Tyler Wilson for sharing his commands and helping me get set up writing this. He did most of the heavylifting, I'm just documenting it.
+
 Hope this was helpful.
 
 _Kyle Mackenzie_

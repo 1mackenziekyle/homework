@@ -1,4 +1,4 @@
-# My Setup for Writing LaTeX Homework Documents on Windows
+# My Setup for Writing LaTeX Documents for Homework on Windows
 
 I write LaTeX for homework assignments, formula sheets, and the rest using a local installation of TeX Live on my laptop, with the _LaTeX Workshop_ extension for VS Code.
 

@@ -1,0 +1,167 @@
+\documentclass[11pt, fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,array}
+\usepackage{dsfont}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{polynom}
+\usepackage{esint}
+\usepackage{mathrsfs}
+\usepackage{calligra}
+\usepackage{style}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\setlength{\parindent}{0em}
+
+
+
+\title{ELEC 221 HW5}
+\author{Kyle Mackenzie}
+\date{November 10, 2022}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+\pagebreak
+
+\section*{HW5.6: Signal Reframing}
+Consider an ideal discrete-time lowpass filter with impulse response and for which the frequency response is that shown in the figure below. Let us consider obtaining a new filter with impulse response $ h_1[n]$ and frequency response $ H_1(e^{j\w}) $ as follows:
+
+$$
+    h_1[n] = \begin{cases}
+        h[n/2], & \text{n even} \\
+        0, & \text{n odd}
+    \end{cases}
+$$
+
+
+This corresponds to inserting a sequence value of zero between each sequence value of $ h[n] $. Determine and sketch $ H_1(e^{j\w}) $ and state the class of ideal filters to which it belongs (e.g., lowpass, highpass, bandpass, multiband, etc.) 
+
+\image[Filt.PNG]{Ideal discrete-time l;lowpass Filter}
+
+\subsection*{HW5.6 Solution}
+
+This filter is essentially an upsampled version of the original filter with width $ \w_c $, where we are sampling twice as frequent as with the original signal.
+
+Thus, for $ H_1(e^{j\w}) $, we can expect a compression by a factor of 2 in the frequency domain, and a periodic extension about $ \pi $, since the sampling rate has been doubled.
+
+\image[h1.PNG]{Frequency Response of new filter}
+
+This filter is a multiband filter, as it allows bands $-\frac{\w_c}{2} < \w < \frac{\w_c}{2}$ and $\pi-\frac{\w_c}{2} < \w < \pi + \frac{\w_c}{2}$ to pass.
+
+\pagebreak
+
+\section*{HW5.7: Interpolation}
+
+The figure shows a system consisting of a continuous-time linear time-invariant system followed by a sampler, conversion to a sequence, and a discrete-time linear time-invariant system. The continuous-time LTI system is causal and satisfies the LCCDE:
+
+$$ \frac{dy_c(t)}{dt} + y_c(t) = x_c(t) $$
+
+\image[q5.7.PNG]{System}
+
+The input
+is a unit impulse $\delta (t)$ 
+
+(a) Determine $ y_c(t) $ 
+
+(b) Determine the frequency response $H(\Omega)$ and the impulse $h[n]$ such that $w[n]=\delta [n].$ 
+
+Upload a pdf or an image.
+
+\subsection*{HW5.7 Solution}
+
+%% 5.7 a)
+\subsection*{a)}
+
+This LCCDE corresponds to a frequency response of 
+$$ 
+    H_{LTI}(j\w) = \frac{1}{1 + j\w}
+$$
+
+so, we have 
+\begin{align*}
+    &Y(j\w) = X(j\w) H_{LTI}(j\w)  \\
+    &Y(j\w) = \mathcal{F}(\delta(t))H_{LTI}(j\w)  \\
+    &Y(j\w) = H_{LTI}(j\w) \\
+    &\Rightarrow y_c(t) = \mathcal{F}^{-1}(H_{LTI}(j \w)) \\ 
+    &y_c(t) = \mathcal{F}^{-1}( \frac{1}{1 + j\w}) \\ 
+    &y_c(t) = e^{-t}u(t) \text{, using TABLE 4.2 BASIC FOURIER TRANSFORM PAIRS from Oppenheim p.328}
+\end{align*}
+
+%% 5.7 b)
+\subsection*{b)}
+
+We want to find frequency response $H(\Omega)$ and corresponding impulse response $h[n]$ such that $w[n]=\delta [n]$.
+
+Looking at Figure 3, we take $ y_c(t) $ and multiply it by $p(t) = \sum_{n=-\infty}^{+\infty} \delta(t - nT) $.
+
+In the frequency domain, we have:
+\begin{align*}
+    &y[n] = y_c(nT) \\
+    &y[n] = e^{-nT}u(nT) \\
+    &Y(e^{j\w}) = \mathcal{F}(e^{-nT}u(nT)) \\
+    &\text{using   } a^nu[n], \hspace*{1mm} |a|<1 \hspace*{1mm} \rightarrow \hspace*{1mm} \frac{1}{1 - ae^{-j\w}} \\
+    &\text{Take } a^n = e^{-nT} = (e^{-T})^n \\
+    &\Rightarrow Y(e^{j\w}) = \mathcal{F}(e^{-nT}u(nT)) = \frac{1}{1 - e^{-T}e^{-j\w}}
+\end{align*}
+
+And now we have the spectra of the input into the second LTI system. We want to find $H(\Omega)$ such that:
+$$
+    Y(e^{j\w})H(\Omega) = W(\Omega)
+$$
+where
+$$
+W(\Omega) \xrightarrow{\mathcal{F}^{-1}} \delta[n]
+$$
+\begin{align*}
+    & \Rightarrow W(\Omega) = 1 = Y(e^{j\w})H(\Omega) = \frac{H(\Omega)}{1 - e^{-T}e^{-j\w}} \\
+    &\Rightarrow H(\Omega) = 1 - e^{-T}e^{-j\w} \\
+    &\Rightarrow h[n] = \delta[n] - e^{-T}\delta[n-1]
+\end{align*}
+
+\vspace*{2mm}
+
+So we have $H(\Omega) = 1 - e^{-T}e^{-j\w}$ and $h[n] = \delta[n] - e^{-T}\delta[n-1]$.
+
+\pagebreak
+
+\section*{HW5.8: Sampling}
+
+Consider the system in Figure 1
+
+\image[q5.81.PNG]{}
+
+Given the Fourier transform of $ x_r(t) $
+in Figure 4, sketch the Fourier transform of two different signals $ x(t) $ that could have generated $ x_r(t) $:
+
+\image[q5.82.PNG]{}
+
+\subsection*{HW5.8 Solution}
+
+This system is functionally a system that samples a signal, turns it into a DT sequence, and then applies a lowpass filter at $ \w_c = W = \frac{\pi}{T_s} = \frac{1}{2}\w_s$ in order to remove the periodic extensions of sampling function $P(j\w) = \frac{2\pi}{T}\sum_{k=-\infty}^{+\infty}\delta(\w - k\w_s) $
+
+\hspace*{1mm}
+
+The effects of aliasing tell us that any frequency components present in the input signal that exist in the range
+
+$$
+    \frac{\w_s}{2} < |\w| < \w_s
+$$
+
+will get mirrored about $ \frac{\w_s}{2} $ in the frequency domain.
+
+\hspace*{1mm}
+
+Therefore, we could have two signals we'll call $x_1(t)$ and $x_2(t)$ with spectra $X_1(j\w)$ and $X_2(j\w)$ that end up as the same result due to aliasing where the first one has the same exact spectra as $x_r(t)$ and the second has the spectra of $x_r(t)$ mirrored about $\w = \frac{\w_s}{2}$.
+
+that will have the same fourier spectra as $ x_r(t) $, once passed through the sampling system.
+
+\bigimage[X1.PNG]{Frequency spectra of $X_1(j\w)$}
+\bigimage[X2.PNG]{Frequency spectra of $X_2(j\w)$}
+
+NOTE: The peak in the diagrams is of height 1.
+\end{document}

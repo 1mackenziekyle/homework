@@ -1,0 +1,103 @@
+%%The package identifies itself and the LaTeX version needed
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style}[Tyler Wilson and Kyle Mackenzie's Math and Physics Package]
+
+%% Written 99% by Tyler Wilson, %1 by Kyle Mackenzie
+
+%%Requeiried packages and preliminary definitions, needed by the options
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{calligra}
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+
+%%Defines calligra font
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n} 
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+
+
+%%Bracket commands
+\newcommand{\brangle}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\brround}[1]{\left( #1 \right)}
+
+\newcommand{\brcurly}[1]{\left\{ #1 \right\}}
+
+\newcommand{\brsquare}[1]{\left[ #1 \right]}
+
+\newcommand{\brvertical}[1]{\left| #1 \right|}
+
+
+
+%%Matrix commands
+\newcommand{\matrixx}[1]{\left[\begingroup        \renewcommand{\arraystretch}{0.5}\begin{matrix} #1 \end{matrix}\endgroup\right]}
+
+\newcommand{\eqnsystem}[1]{\left\{\begin{matrix} #1 \end{matrix}\right.}
+
+\newcommand{\detmatrix}[1]{\left|\begin{matrix} #1
+\end{matrix}\right|}
+
+\newcommand{\augmatrix}[2]{\left[\begingroup        \renewcommand{\arraystretch}{0.5}\begin{matrix} #1 \end{matrix}\endgroup\middle|\begingroup        \renewcommand{\arraystretch}{0.5}\begin{matrix} #2 \end{matrix}\endgroup\right]}
+
+
+
+
+%%Vector and notation commands
+\newcommand{\fvec}[1]{\underrightarrow{#1}}
+
+
+
+%%Lettering
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\sr}{\ensuremath{\mathcalligra{r}}}
+\newcommand{\cursive}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\lap}{\mathscr{L}}
+
+
+
+%%Fraction/derivative commands
+\newcommand{\ddx}[2][]{\frac{d #1}{d #2}}
+\newcommand{\pdx}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+
+
+
+
+%%Ease of use commands
+\newcommand{\Ra}{\Rightarrow}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\eval}{\bigg\vert}
+
+%%Personal (Kyle) Commands
+\newcommand{\image}[2][]{
+    \vspace*{3mm}
+    \begin{figure}[h]
+        \caption{#2}
+        \centering
+        \includegraphics[width=0.6\textwidth]{#1}
+    \end{figure}
+    \vspace*{3mm}
+}
+\newcommand{\w}{\omega}
+
+
+
+%%Math operators
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+%%Formula box command
+\newcommand{\formula}[2]{\begin{center} \begin{tcolorbox}[text width = #1] $$#2$$\end{tcolorbox}\end{center}}

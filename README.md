@@ -6,7 +6,7 @@ Here I will write my simple setup for anyone looking to start using LaTeX.
 
 ## 1. TeX Live Installation
 
-First step is to install [TeX Live](https://www.tug.org/texlive/) on your device.
+First step is to install [TeX Live](https://www.tug.org/texlive/) on your device (it's just a link to a website, not a download).
 
 Tex Live is a program downloadable on Windows and Unix-like environments (Linux, MacOS) intended to be a simple way to create LaTeX documents locally on your computer.
 

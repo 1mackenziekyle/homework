@@ -1,0 +1,225 @@
+\documentclass[11pt, fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,array}
+\usepackage{dsfont}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{polynom}
+\usepackage{esint}
+\usepackage{mathrsfs}
+\usepackage{calligra}
+\usepackage{mystyles}
+\setlength{\parindent}{0em}
+
+
+
+
+\title{Homework Template}
+\author{Kyle Mackenzie}
+\date{Date 2022}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+\pagebreak
+
+\section*{Problem 1}
+
+Consider the following inpulse response of a discrete-time, LTI system
+$$
+    h[n] = \delta[n] + 2\delta[n-1]
+$$
+
+a) What is the frequency repsonse of the system
+
+b) What is its magnitude and phase representation
+
+c) What would be the output if the input is $x[n] = cos(\pi n/2 + \pi/6) + sin(\pi n + \pi / 3)$?
+
+\subsection*{Solution}
+
+\subsection*{a)}
+
+The frequency response is 
+
+$$
+    h[n] \xrightarrow{\mathcal{F}} H(e^{j\w})
+$$
+
+Thus, 
+\begin{align*}
+    &H(e^{j\w}) = \mathcal{F}(\delta[n] + 2\delta[n-1]) \\ 
+    &H(e^{j\w}) = \mathcal{F}(\delta[n]) + \mathcal{F}(2\delta[n-1]) \\
+    &H(e^{j\w}) = 1 + 2\mathcal{F}(2\delta[n-1]) \\
+    &H(e^{j\w}) = 1 + 2e^{-j\w}\mathcal{F}(\delta[n]) \\
+    &H(e^{j\w}) = 1 + 2e^{-j\w} \\
+\end{align*}
+
+\subsection*{b)}
+
+\begin{align*}
+    &|H(e^{j\w})| = |1 + 2e^{-j\w}| \\
+    &|H(e^{j\w})| = |1 + 2cos(-\w) + 2jsin(-\w)| \\
+    &|H(e^{j\w})| = \sqrt[]{(1 + 2cos(-\w))^2 + (2sin(-\w))^2} \\
+    &|H(e^{j\w})| = \sqrt[]{(1 + 2cos(\w))^2 + (2sin(\w))^2} \\
+\end{align*}
+
+\begin{align*}
+    &\angle H(e^{j\w}) = \angle 1 + 2e^{-j\w} \\
+    &\angle H(e^{j\w}) = \angle 1 + 2cos(-\w) + 2jsin(\-w) \\
+    &\angle H(e^{j\w}) = \angle 1 + 2cos(\w) - 2jsin(w) \\
+    &\angle H(e^{j\w}) = arctan \left( \frac{-2sin(\w)}{1 + 2cos(\w)} \right) \\
+\end{align*}
+
+\subsection*{c)}
+
+- Input is $x[n] = cos(\pi n/2 + \pi/6) + sin(\pi n + \pi / 3)$
+
+- Output is $H(e^{j\w})x[n]$
+
+\vspace*{2mm}
+
+
+\vspace*{1mm}
+
+\textbf{For $cos(\pi n/2 + \pi/6)$ term:}
+\begin{align*}
+    &|\dtfreqresp|  = \sqrt{(1 + 2cos(\pi/2))^2 + (2sin(\pi/2))^2} \\
+    &|\dtfreqresp|  = \sqrt{(1 + 0)^2 + (2(1))^2} \\
+    &|\dtfreqresp|  = \sqrt{5} \\
+    &\vspace*{1mm} \\
+    &\angle \dtfreqresp = arctan \left( \frac{-2sin(\pi/2)}{1 + 2cos(\pi/2)} \right) \\
+    &\angle \dtfreqresp = arctan \brround{\frac{-2(1)}{1 + (0)}} \\
+    &\angle \dtfreqresp = arctan \brround{-2} \\
+    &\angle \dtfreqresp = -1.107
+\end{align*}
+
+\vspace*{1mm}
+
+\textbf{For $sin(\pi n + \pi / 3)$ term:}
+
+\begin{align*}
+    &\w = \pi \\
+    &\angle = \pi/3 \\
+    &\vspace{1mm} \\
+    &|\dtfreqresp|  =\sqrt[]{(1 + 2cos(\w))^2 + (2sin(\w))^2} \\
+    &|\dtfreqresp|  =\sqrt[]{(1 + 2cos(\pi))^2 + (2sin(\pi))^2} \\
+    &|\dtfreqresp|  =\sqrt[]{(-1))^2 + (0)^2} \\
+    &|\dtfreqresp|  = 1 \\
+    &\vspace*{1mm} \\
+    &\angle \dtfreqresp = arctan \left( \frac{-2sin(\pi)}{1 + 2cos(\pi)} \right) \\
+    &\angle \dtfreqresp = 0 \\
+\end{align*}
+
+Therefore,
+
+$$ y[n] = \sqrt{5}cos(\pi n/2 + \pi/6 - 1.107) + sin(\pi n + \pi / 3)$$
+
+\pagebreak
+
+\section*{Problem 2}
+
+Consider system described by
+$$
+| \ctfreqresp  | = (\w + 1)u(\w + 1) - 2(\w)u(\w) + (\w - 1)u(\w - 1)
+$$
+$$
+    \angle \ctfreqresp = \frac{\pi}{2}u(-\w) - \frac{\pi}{2}u(\w) \text{ where } \angle H(0) = 0 
+$$
+
+a) Sketch the magnitude and phase of $\ctfreqresp$.
+
+b) For input $x(t) = 1 + cos(t/2)$, sketch the magnitude and phase of $X(j\w)$.
+
+c) Find output $y(t)$.
+
+\subsection*{Solution}
+
+\subsection*{a)}
+
+\image[2cmag.PNG]{Magnitude of Frequency Response}
+
+\image[2cang.PNG]{Angle of Frequency Response}
+
+\subsection*{b)}
+
+\begin{align*}
+    &X(j\w) = \mathcal{F}\brround{1 + cos(t/2)} \\
+    &X(j\w) = \mathcal{F}\brround{1 + \frac{e^{jt/2} + e^{-jt/2}}{2}} \\
+    &X(j\w) = \delta(\w) + \frac{1}{2}\delta(\w - 1/2) + \frac{1}{2}\delta(\w + 1/2) \\
+    &\Rightarrow |X(j\w)| = \delta(\w) + \frac{1}{2}\delta(\w - 1/2) + \frac{1}{2}\delta(\w + 1/2) \\
+    &\Rightarrow \angle X(j\w) = 0
+\end{align*}
+
+\subsection*{c)}
+
+\textbf{For} $\mathbf{(1)}$ \textbf{Term:}
+
+\begin{align*}
+    &\w = 0 \\
+    &\angle = 0 \\
+    &\vspace*{1mm} \\
+    &\ctfreqresp = 1 
+\end{align*}
+
+\textbf{For} $\mathbf{ cos(t/2)}$ \textbf{Term:}
+
+\begin{align*}
+    &\w = 1/2 \\
+    &\angle = 0 \\
+    &\vspace*{1mm} \\ 
+    &\ctfreqresp = 1/2
+\end{align*}
+
+Therefore 
+
+$$
+    y(t) = 1 + \frac{cos(t/2)}{2}
+$$
+
+\section*{Problem 3}
+
+The frequency response of a filter is 
+$$
+    H(s) = \frac{\sqrt{60}s}{s^2 + 2s\sqrt{14} + 15}
+$$
+
+where $s = j\w$.
+
+
+
+a) Find magnitude and phase, in degrees, of $H(s)$ at frequencies 0, 10, and 100 rad/s
+
+b) Roughly sketch $H(s)$. What type of filter is this?
+
+c) If a signal generator that produces a biased sinusoid $x(t) = B + Acos(\w_0 t)$ is connected to this filter, find the frequency or frequencies, $\w_0$ at which the filter's output is $y(t) = Acos(\w_0 t + \theta)$, i.e. the amplitude of the sinusoid term remains the same.
+
+\subsection*{a)}
+\begin{align*}
+    &H(s) = \frac{\sqrt{60}s}{s^2 + 2s\sqrt{14} + 15} \\
+    &H(j\w) = \frac{\sqrt{60}j\w}{(j\w)^2 + 2j\w \sqrt{14} + 15} \\
+    &H(j\w) = \frac{\sqrt{60}j\w}{15 - \w^2 + 2\w \sqrt{14}j} \\
+    &\vspace*{2mm} \\
+    &|H(j\w)| = \frac{|\sqrt{60}j\w|}{|15 - \w^2 + 2\w \sqrt{14}j|} \\
+    &|H(j\w)| = \frac{|(\sqrt{60}\w)^2|}{|(15 - \w^2)^2 + (2\w \sqrt{14})^2|} \\ 
+    &|H(j\w)| = \frac{|60\w|}{|225 - 30\w^2 - \w^4 + 56 \w^2|} \\
+    &|H(j\w)| = \frac{|60\w|}{|225 - \w^4 + 56 \w^2|} \\
+    &\vspace*{2mm} \\
+    &\angle H(j\w) = \angle \frac{\sqrt{60}j\w}{(j\w)^2 + 2j\w\sqrt{14} + 15} \\
+    &\angle H(j\w) = \angle \sqrt{60}j\w - \angle \brsquare{(j\w)^2 + 2j\w\sqrt{14} + 15} \\
+    &\angle H(j\w) =\frac{\pi}{2}sgn(\w) - \angle \brsquare{(j\w)^2 + 2j\w\sqrt{14} + 15} \\
+    &\angle H(j\w) =\frac{\pi}{2}sgn(\w) - arctan \brround{\frac{2\sqrt{14}\w}{15 - \w^2}} \\
+    &\angle H(j\w) =\frac{\pi}{2}sgn(\w) + arctan \brround{\frac{-2\sqrt{14}\w}{15 - \w^2}}
+\end{align*}
+
+
+
+
+
+
+
+\end{document}
